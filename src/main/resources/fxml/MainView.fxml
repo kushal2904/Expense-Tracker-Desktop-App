@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.expensetracker.ui.MainViewController"
+      styleClass="main-container">
+    
+    <!-- Menu Bar -->
+    <MenuBar styleClass="menu-bar">
+        <Menu text="File">
+            <MenuItem text="Export CSV" onAction="#handleExportCSV"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Exit" onAction="#handleExit"/>
+        </Menu>
+        <Menu text="View">
+            <MenuItem text="Reports" onAction="#handleShowReports"/>
+        </Menu>
+        <Menu text="Manage">
+            <MenuItem text="Categories" onAction="#handleManageCategories"/>
+            <MenuItem text="Budgets" onAction="#handleManageBudgets"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="About" onAction="#handleAbout"/>
+        </Menu>
+    </MenuBar>
+    
+    <!-- Main Content -->
+    <HBox styleClass="main-content">
+        
+        <!-- Left Sidebar -->
+        <VBox styleClass="sidebar" minWidth="250" maxWidth="250">
+            <Label text="Categories" styleClass="sidebar-title"/>
+            <ListView fx:id="categoryListView" styleClass="category-list" VBox.vgrow="ALWAYS"/>
+            
+            <Separator/>
+            
+            <Label text="Budget Summary" styleClass="sidebar-title"/>
+            <VBox fx:id="budgetSummaryContainer" styleClass="budget-summary" VBox.vgrow="ALWAYS"/>
+        </VBox>
+        
+        <!-- Center Content -->
+        <VBox styleClass="center-content" HBox.hgrow="ALWAYS">
+            
+            <!-- Month/Year Selector -->
+            <HBox styleClass="month-selector">
+                <Button text="&lt;" onAction="#handlePreviousMonth" styleClass="month-nav-button"/>
+                <Label fx:id="monthYearLabel" styleClass="month-year-label"/>
+                <Button text="&gt;" onAction="#handleNextMonth" styleClass="month-nav-button"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Add Expense" onAction="#handleAddExpense" styleClass="add-expense-button"/>
+            </HBox>
+            
+            <!-- Split Pane for Chart and Table -->
+            <SplitPane styleClass="content-split-pane" VBox.vgrow="ALWAYS" dividerPositions="0.4">
+                
+                <!-- Top: Chart Container -->
+                <VBox styleClass="chart-container">
+                    <Label text="Expenses by Category" styleClass="chart-title"/>
+                    <VBox fx:id="chartContainer" styleClass="expense-chart" VBox.vgrow="ALWAYS"/>
+                </VBox>
+                
+                <!-- Bottom: Expenses Table -->
+                <VBox styleClass="table-container">
+                    <HBox styleClass="table-header">
+                        <Label text="Expenses" styleClass="table-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="searchField" promptText="Search expenses..." styleClass="search-field"/>
+                    </HBox>
+                    
+                    <TableView fx:id="expenseTableView" styleClass="expense-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="dateColumn" text="Date" styleClass="table-column"/>
+                            <TableColumn fx:id="categoryColumn" text="Category" styleClass="table-column"/>
+                            <TableColumn fx:id="amountColumn" text="Amount" styleClass="table-column"/>
+                            <TableColumn fx:id="notesColumn" text="Notes" styleClass="table-column"/>
+                            <TableColumn fx:id="actionsColumn" text="Actions" styleClass="table-column"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+                
+            </SplitPane>
+            
+        </VBox>
+        
+    </HBox>
+    
+</VBox>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.expensetracker.ui.ExpenseDialogController"
+      styleClass="dialog-container" spacing="10">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Title -->
+    <Label fx:id="dialogTitle" styleClass="dialog-title"/>
+    
+    <!-- Form Fields -->
+    <GridPane styleClass="form-grid" hgap="10" vgap="10">
+        
+        <!-- Amount -->
+        <Label text="Amount:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="amountField" promptText="Enter amount" GridPane.rowIndex="0" GridPane.columnIndex="1" 
+                   styleClass="form-field"/>
+        
+        <!-- Category -->
+        <Label text="Category:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
+        <ComboBox fx:id="categoryComboBox" promptText="Select category" GridPane.rowIndex="1" GridPane.columnIndex="1" 
+                  styleClass="form-field"/>
+        
+        <!-- Date -->
+        <Label text="Date:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label"/>
+        <DatePicker fx:id="datePicker" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-field"/>
+        
+        <!-- Notes -->
+        <Label text="Notes:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextArea fx:id="notesTextArea" promptText="Enter notes (optional)" GridPane.rowIndex="3" GridPane.columnIndex="1" 
+                  styleClass="form-field" prefRowCount="3" wrapText="true"/>
+        
+    </GridPane>
+    
+    <!-- Budget Warning -->
+    <VBox fx:id="budgetWarningContainer" styleClass="budget-warning" visible="false" managed="false">
+        <Label fx:id="budgetWarningLabel" styleClass="warning-label"/>
+    </VBox>
+    
+    <!-- Buttons -->
+    <HBox styleClass="button-container" spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancel" onAction="#handleCancel" styleClass="cancel-button"/>
+        <Button text="Save" onAction="#handleSave" styleClass="save-button" defaultButton="true"/>
+    </HBox>
+    
+</VBox>

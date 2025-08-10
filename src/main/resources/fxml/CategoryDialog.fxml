@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.expensetracker.ui.CategoryDialogController"
+      styleClass="dialog-container" spacing="10">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Title -->
+    <Label fx:id="dialogTitle" styleClass="dialog-title"/>
+    
+    <!-- Form Fields -->
+    <GridPane styleClass="form-grid" hgap="10" vgap="10">
+        
+        <!-- Name -->
+        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="nameField" promptText="Enter category name" GridPane.rowIndex="0" GridPane.columnIndex="1" 
+                   styleClass="form-field"/>
+        
+        <!-- Color -->
+        <Label text="Color:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
+        <HBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <TextField fx:id="colorField" promptText="#RRGGBB" styleClass="form-field" prefWidth="100"/>
+            <Rectangle fx:id="colorPreview" width="30" height="30" styleClass="color-preview"/>
+            <Button text="Pick Color" onAction="#handlePickColor" styleClass="pick-color-button"/>
+        </HBox>
+        
+    </GridPane>
+    
+    <!-- Buttons -->
+    <HBox styleClass="button-container" spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancel" onAction="#handleCancel" styleClass="cancel-button"/>
+        <Button text="Save" onAction="#handleSave" styleClass="save-button" defaultButton="true"/>
+    </HBox>
+    
+</VBox>
